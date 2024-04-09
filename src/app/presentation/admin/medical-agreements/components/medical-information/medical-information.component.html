@@ -1,0 +1,192 @@
+<div class="px-2">
+    <form [formGroup]="medicalInformationForm">
+        <div class="p-fluid grid">
+
+            <!-- AÑO DE ACUERDO -->
+            <div class="field col-5 md:col-3 lg:col-2 xl:col-1 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">AÑO DE ACUERDO</label>
+                <input class="border-round-xl" formControlName="agreement_year" pInputText [maxlength]="4" #agreement_year>
+            </div>
+
+            <!-- NÚMERO DE ACUERDO -->
+            <div class="field col-7 md:col-3 lg:col-2 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">NÚMERO DE ACUERDO</label>
+                <span class="p-float-label p-input-icon-right my-0">
+                    <i *ngIf="agreement_year.value.length === 4 && agreement_number.value.length > 0"class="pi pi-search cursor-pointer pr-3 text-blue" ></i>
+                    <input
+                        class="border-round-xl"
+                        formControlName="agreement_number"
+                        pInputText
+                        [maxlength]="20"
+                        (input)="autoCompleteAgreementNumber($event)"
+                        (focus)="selectValue($event)"
+                        (keydown.enter)="keyEnterAgreement_number($event)"
+                        #agreement_number>
+
+                    <button
+                        *ngIf="ismodeUpdate"
+                        pTooltip="REFRESCAR ACUERDO MEDICO"
+                        pButton
+                        pRipple
+                        type="button"
+                        tooltipPosition="top"
+                        icon="pi pi-times"
+                        class="p-button-rounded p-button-danger p-button-outlined p-button-register-cancel ml-0 mr-1 h-2rem w-2 align-self-end"
+                        (click)="reloadPage()"
+                    ></button>
+
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-6 lg:col-6 xl:col-9 mb-0 px-1"></div>
+
+            <!-- Fecha de solicitud -->
+            <div class="field col-12 md:col-6 lg:col-4 xl:col-3 mb-0 px-1">
+                <label class="text-sm tag-calendar mb-2 font-semibold">FECHA SOLICITUD</label>
+                <p-calendar
+                    dateFormat="dd/mm/yy"
+                    [showIcon]="true"
+                    [class]="validateService.validate(medicalInformationForm.controls['aplication_date'])"
+                    formControlName="aplication_date"
+                ></p-calendar>
+            </div>
+
+            <div class="field col-6 md:col-6 lg:col-8 xl-col-9 mb-0 px-1"></div>
+
+            <!-- Nombre y apellido de medico -->
+            <div class="field col-12 md:col-6 lg:col-4 xl:col-4 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">NOMBRE Y APELLIDO</label>
+                <p-dropdown
+                    [autoDisplayFirst]="false"
+                    [options]="doctorsList"
+                    [filter]="true"
+                    filterBy="full_name_doctor"
+                    optionLabel="full_name_doctor"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="40"
+                    formControlName="doctor_name"
+                    placeholder="Selecciona un medico"
+                    [class]="validateService.validate(medicalInformationForm.controls['doctor_name'])"
+                    (onChange)="changeDoctor()"
+                    [showClear]="false"
+                ></p-dropdown>
+            </div>
+
+            <!-- SAP -->
+            <div class="field col-6 md:col-3 lg:col-2 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">SAP</label>
+                <input class="border-round-xl" pInputText formControlName="code_sap">
+            </div>
+
+            <!-- Especialidad -->
+            <div class="field col-6 md:col-3 lg:col-2 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">ESP</label>
+                <input class="border-round-xl" pInputText formControlName="specialty">
+            </div>
+
+            <!-- CMP -->
+            <div class="field col-6 md:col-3 lg:col-2 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">CMP</label>
+                <input class="border-round-xl" pInputText formControlName="cmp">
+            </div>
+
+            <!-- CAT -->
+            <div class="field col-6 md:col-3 lg:col-2 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">CAT</label>
+                <input class="border-round-xl" pInputText formControlName="category">
+            </div>
+
+            <!-- Nombre policlino -->
+            <div class="field col-12 md:col-6 lg:col-6 xl:col-6 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">NOMBRE DEL POLICLINICO/CLINICA/HOSPITAL</label>
+                <input
+                    class="border-round-xl"
+                    [class]="validateService.validate(medicalInformationForm.controls['local_address'])"
+                    formControlName="local_address"
+                    pInputText>
+            </div>
+
+            <!-- Distrito -->
+            <div class="field col-12 md:col-6 lg:col-6 xl:col-6 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">DISTRITO</label>
+                <input
+                    class="border-round-xl"
+                    [class]="validateService.validate(medicalInformationForm.controls['local_address'])"
+                    formControlName="local_district"
+                    pInputText>
+            </div>
+
+        </div>
+
+        <div class="pb-3">
+            <h2 class="text-h2">TERMINO DE ACUERDO</h2>
+        </div>
+
+        <!-- FECHA DE INCIIO -->
+        <div class="p-fluid grid">
+            <div class="field col-6 md:col-4 lg:col-4 xl:col-2 mb-0 px-1">
+                <label class="text-sm tag-calendar mb-2 font-semibold">FECHA INICIO</label>
+                <p-calendar
+                    dateFormat="dd/mm/yy"
+                    [showIcon]="true"
+                    [class]="validateService.validate(medicalInformationForm.controls['start_date'])"
+                    (onSelect)="setDate($event)"
+                    formControlName="start_date"
+                ></p-calendar>
+            </div>
+
+            <!-- FECHA DE FIN -->
+            <div class="field col-6 md:col-4 lg:col-4 xl:col-2 mb-0 px-1">
+                <label class="text-sm tag-calendar mb-2 font-semibold">FECHA FIN</label>
+                <p-calendar
+                    dateFormat="dd/mm/yy"
+                    [showIcon]="true"
+                    [class]="validateService.validate(medicalInformationForm.controls['finish_date'])"
+                    formControlName="finish_date"
+                ></p-calendar>
+            </div>
+
+            <!-- FECHA DE TERMINO ANTERIOR -->
+            <div class="field col-6 md:col-4 lg:col-4 xl:col-2 mb-0 px-1">
+                <label class="text-sm tag-calendar mb-2 font-semibold">F. TERMINO ANTERIOR</label>
+                <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" formControlName="previous_contract_end_date"></p-calendar>
+            </div>
+
+            <!-- FORMA DE PAGO -->
+            <div class="field col-6 md:col-4 lg:col-4 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">FORMA DE PAGO</label>
+                <p-dropdown
+                    [options]="paymentsType"
+                    [autoDisplayFirst]="false"
+                    optionLabel="description"
+                    formControlName="way_to_pay"
+                    [class]="validateService.validate(medicalInformationForm.controls['way_to_pay'])"
+                    placeholder="Selecciona una forma de pago"
+                    [showClear]="true"
+                ></p-dropdown>
+            </div>
+
+            <!-- RENOVACION -->
+            <div class="field col-6 md:col-4 lg:col-4 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">RENOVACIÓN</label>
+                <p-dropdown
+                    [options]="renovationType"
+                    [autoDisplayFirst]="false"
+                    optionLabel="description"
+                    formControlName="renovation"
+                    optionValue="id"
+                    [showClear]="true"
+                ></p-dropdown>
+            </div>
+
+            <!-- CANTIDAD DE ACUERDO -->
+            <div class="field col-6 md:col-4 lg:col-4 xl:col-2 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">CANTIDAD DE ACUERDO</label>
+                <input
+                  class="border-round-xl"
+                  pInputText
+                  formControlName="previous_contract_count">
+            </div>
+        </div>
+    </form>
+</div>

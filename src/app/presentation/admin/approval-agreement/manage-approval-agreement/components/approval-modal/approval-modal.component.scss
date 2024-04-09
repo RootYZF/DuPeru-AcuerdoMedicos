@@ -1,0 +1,31 @@
+:host ::ng-deep {
+    
+    p-inputtextarea,  .p-inputtextarea{
+        border-radius: 12px !important;
+        resize: none !important;
+    }
+
+    button{
+        height: 2.5rem ;
+        border-radius: 15px ;
+    }
+
+    .button-save {
+        border-radius: 20px !important;
+        height: 3rem !important;
+        width: 13rem !important;
+        font-size: 1.5rem !important;
+        margin-right: 1rem !important;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    .p-fluid .p-dropdown .p-dropdown-label {
+        align-self: center;
+    }
+
+    .p-autocomplete .p-autocomplete-loader {
+        display: none !important;
+    }
+ 
+}

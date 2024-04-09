@@ -1,0 +1,205 @@
+nav {
+    width: 100% !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9997;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.navbar {
+    display: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    float: left;
+}
+
+.logo img {
+    width: 80px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.user {
+    margin-left: auto;
+}
+
+i {
+    cursor: pointer;
+}
+
+.sanguchito {
+    background: var(--primary-color);
+    font-size: 1.7rem;
+    border-radius: 50%;
+    padding: 7px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 767px) {
+    
+    nav {
+      display: none !important;
+    }
+
+    .navbar {
+        width: 100% !important;
+        height: 4.5rem !important;
+        position: fixed !important;
+        top: 0 !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--primary-color);
+        padding-left: 1rem;
+        padding-right: 1rem;
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+    }
+    
+  }
+
+:host ::ng-deep {
+
+    .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover {
+        background-color: #9d9eff !important;
+        border-radius: 15px;
+    }
+
+    .p-panelmenu .p-panelmenu-panel .p-panelmenu-content {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        margin-bottom: 10px !important;
+    }
+
+
+    .p-sidebar .p-sidebar-content {
+        height: 70%;
+    }
+
+    .p-sidebar .p-sidebar-footer {
+        padding-left: 41px;
+        color: #1100ff !important;
+        height: 15%;
+    }
+
+    .p-panelmenu .p-menuitem-text {
+        color: #1100ff;
+        font-size: x-large;
+        font-weight: 500;
+    }
+
+    .p-panelmenu .p-panelmenu-content {
+        width: 90%;
+        margin-left: 30px;
+    }
+
+    #menu-active_header {
+        background-color: var(--primary-color) !important;
+        color: rgb(255, 0, 0) !important;
+        border-radius: 15px !important;
+        span {
+            color: rgb(255, 0, 0) !important;
+            font-size: x-large;
+            font-weight: 500;
+        }
+    }
+    
+    #submenu-active {
+        background-color: #d5e5f5 !important;
+        border-radius: 15px !important;
+        span {
+            color: var(--primary-color) !important;
+        }
+    }
+
+    .p-panelmenu .p-panelmenu-panel .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {
+        background-color: #d5e5f5 !important;
+    }
+
+    .layout-sidebar .layout-menu .layout-root-menuitem>.layout-menuitem-root-text {
+        font-size: .857rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-weight: 600;
+        color: #1900ff;
+        padding: 1rem 2rem;
+    }
+
+    .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text {
+        padding-left: 30px;
+        color: #1900ff;
+        font-size: 17px;
+    }
+
+    .p-panelmenu .p-panelmenu-panel {
+        box-shadow: none !important;
+        margin-bottom: 15px
+    }
+
+    .p-panelmenu .p-panelmenu-panel .p-panelmenu-header > a {
+        height: 2.3rem;
+        font-weight: 600;
+        color: #47525E !important;
+    }
+
+    .p-button-bar {
+        background-color: var(--primary-color) !important;
+        color: #ffffff !important;
+        border: none !important;
+    }
+
+    .pi-save, .pi-refresh, .pi-trash, .pi-print, .pi-search, .pi-file-export{
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+
+    .pi-bars {
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+    }
+
+    .text-logOut {
+        color: #1900ff !important;
+    }
+
+    .p-button .p-button-label {
+        font-weight: 500;
+    }
+
+    .p-divider-solid.p-divider-horizontal:before {
+        background-color: #d1d9ff !important;
+        height: 2px !important;
+    }
+
+    .p-divider-horizontal.p-divider-left {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .p-button .p-button-icon-left {
+        font-size: 1.5rem;
+    }
+
+    .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+        color: rgb(198, 198, 198);
+    }
+}
+
+.logOut:enabled:hover {
+    font-size: larger;
+    color: #0e549a !important
+}
+
+
+.col-2 {
+    width: 12.5% !important;
+}
+
+
+  

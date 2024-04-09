@@ -1,0 +1,63 @@
+:host ::ng-deep { 
+
+    p-progressbar {
+        display: none !important;
+    }
+
+    p-fileUpload {
+        width: 100%;
+
+        .p-fileupload-buttonbar {
+            display: none;
+        }
+
+        .p-fileupload .p-fileupload-content {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0rem;
+            padding-bottom: 0rem;
+            border: none;
+        }
+
+        .p-fileupload-filename {
+            display: none;
+        }
+
+        .p-button {
+            border-radius: 20px !important;
+            background-color: transparent !important;
+            color: var(--primary-color);
+        }
+
+        
+        .p-button:enabled:hover {
+            background-color: rgb(155, 155, 252) !important;
+            color: white;
+        }
+
+        img {
+            padding: 0px !important;
+            height: 5rem !important;
+            width: 100% !important;
+        }
+
+        .p-fileupload-filename + div {
+            display: none !important;
+        }
+
+        .p-fileupload-row>div:last-child {
+            max-width: 3.75rem !important;
+        }
+    }
+}
+.text-h2 {
+    font-size: larger;
+    color: var(--primary-color)
+}
+
+.input-signatures {
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    min-height: 12.5rem;
+    display: flex;
+}

@@ -1,0 +1,18 @@
+<div class="lg:col col-12 m-0 p-0 lg:pl-2">
+  <p-fieldset>
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center text-white">
+        <span class="font-bold text-lg uppercase">Productos sin registro closeup anterior</span>
+      </div>
+    </ng-template>
+
+    <!-- Listado -->
+    <div class="container-products">
+      <ul *ngFor="let product of oldUnregisteredProductList">
+        <li class="item-product">
+          {{ product.description }}
+        </li>
+      </ul>
+    </div>
+  </p-fieldset>
+</div>

@@ -1,0 +1,172 @@
+<div class="px-2">
+    <form [formGroup]="authorizationAgreementForm">
+        <div class="p-fluid grid">
+            <!-- RESPONSABLES -->
+            <div class="field col-12 md:col-12 lg:col-12 xl:col-12 mb-0 px-1">
+                <h2 class="text-h2">RESPONSABLES</h2>
+            </div>
+
+            <div class="field col-12 md:col-12 lg:col-4 xl:col-4 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">VISITADOR</label>
+                <input  pInputText formControlName="medical_visitor">
+            </div>
+
+            <!-- ANALISTA -->
+            <div class="field col-12 md:col-12 lg:col-4 xl:col-4 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">ANALISTA</label>
+                <p-dropdown
+                  [autoDisplayFirst]="false"
+                  optionLabel="full_name"
+                  [showClear]="true"
+                  formControlName="commercial_analyst"
+                  [options]="userSupervisorList"
+                  placeholder="Selecciona un analista"
+                ></p-dropdown>
+            </div>
+
+            <!-- SUPERVISOR / JEFE DE ZONA -->
+            <div class="field col-12 md:col-12 lg:col-4 xl:col-4 mb-0 px-1">
+                <label class="text-sm mb-2 font-semibold">SUPERVISOR / JEFE DE ZONA</label>
+                <p-dropdown
+
+                   [autoDisplayFirst]="false"
+                   optionLabel="full_name"
+                   [showClear]="true"
+                   formControlName="commercial_supervisor"
+                   [options]="userAnalystList"
+                   placeholder="Selecciona un supervisor"
+                   ></p-dropdown>
+            </div>
+
+             <!-- FIRMAS -->
+             <div class="field col-12 md:col-12 lg:col-12 xl:col-12 mb-0 px-1">
+                <h2 class="text-h2">AUTORIZANTES FIRMAS</h2>
+            </div>
+
+            <div class="p-fluid grid col-12">
+                <span class="field col-12 md:col-6 lg:col-3 xl:col-3 px-2">
+                    <label class="font-semibold">ANALISTA COMERCIAL</label>
+                    <span class="col-12 input-signatures mr-3 flex flex-column">
+                        <span class="col-6 flex align-self-center">
+                            <button
+                                pButton
+                                label="FIRMA APROBACION"
+                                class="p-button-text p-button-data text-base font-bold px-0 justify-content-center"
+                                icon="pi pi-file-import"
+                                iconPos="right"
+                                disabled="true"
+                                (click)="showFileExplorer(commercialAnalyst)">
+                            </button>
+                        </span>
+
+                        <div class="col-12">
+                            <p-fileUpload
+                                #commercialAnalyst
+                                [maxFileSize]="10000000"
+                                [fileLimit]="1"
+                                [multiple]="false"
+                                mode="advanced"
+                                name="files"
+                                accept=".jpg,.png"
+                                [customUpload]="true">
+
+                            </p-fileUpload>
+                        </div>
+                    </span>
+                </span>
+
+                <span class="field col-12 md:col-6 lg:col-3 xl:col-3 px-2">
+                    <label class="font-semibold">SUPERVISOR / JEDE DE ZONA</label>
+                    <span class="col-12 input-signatures flex flex-column">
+                        <span class="col-6 flex align-self-center">
+                            <button
+                                pButton
+                                label="FIRMA APROBACION"
+                                class="p-button-text p-button-data text-base font-bold px-0 justify-content-center"
+                                icon="pi pi-file-import"
+                                iconPos="right"
+                                disabled="true"
+                                (click)="showFileExplorer(supervisor)">
+                            </button>
+                        </span>
+
+                        <div class="col-12">
+                            <p-fileUpload
+                                #supervisor
+                                [maxFileSize]="10000000"
+                                [fileLimit]="1"
+                                [multiple]="false"
+                                mode="advanced"
+                                name="files"
+                                accept=".jpg,.png"
+                                [customUpload]="true">
+                            </p-fileUpload>
+                        </div>
+
+                    </span>
+                </span>
+
+                <span class="field col-12 md:col-6 lg:col-3 xl:col-3 px-2">
+                    <label class="font-semibold">GERENTE COMERCIAL</label>
+                    <span class="col-12 input-signatures flex flex-column">
+                        <span class="col-6 flex align-self-center">
+                            <button
+                                pButton
+                                label="FIRMA APROBACION"
+                                class="p-button-text p-button-data text-base font-bold px-0 justify-content-center"
+                                icon="pi pi-file-import"
+                                iconPos="right"
+                                disabled="true"
+                                (click)="showFileExplorer(commercialManager)">
+                            </button>
+                        </span>
+
+                        <div class="col-12">
+                            <p-fileUpload
+                                #commercialManager
+                                [maxFileSize]="10000000"
+                                [fileLimit]="1"
+                                [multiple]="false"
+                                mode="advanced"
+                                name="files"
+                                accept=".jpg,.png"
+                                [customUpload]="true">
+                            </p-fileUpload>
+                        </div>
+
+                    </span>
+                </span>
+
+                <span class="field col-12 md:col-6 lg:col-3 xl:col-3 px-2">
+                    <label class="font-semibold">GERENTE GENERAL</label>
+                    <span class="col-12 input-signatures flex flex-column">
+                        <span class="col-16 flex align-self-center">
+                            <button
+                                pButton
+                                label="FIRMA APROBACION"
+                                class="p-button-text p-button-data text-base font-bold px-0 justify-content-center"
+                                icon="pi pi-file-import"
+                                iconPos="right"
+                                disabled="true"
+                                (click)="showFileExplorer(generalManager)">
+                            </button>
+                        </span>
+
+                        <div class="col-12">
+                            <p-fileUpload
+                                #generalManager
+                                [maxFileSize]="10000000"
+                                [fileLimit]="1"
+                                [multiple]="false"
+                                mode="advanced"
+                                name="files"
+                                accept=".jpg,.png"
+                                [customUpload]="true">
+                            </p-fileUpload>
+                        </div>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>

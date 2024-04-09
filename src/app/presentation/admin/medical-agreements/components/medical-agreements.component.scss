@@ -1,0 +1,23 @@
+.container {
+    background: #fff;
+    border-top: 1rem solid var(--primary-color);
+    border-bottom: 1rem solid var(--primary-color);
+    border-radius: 0.8rem;
+}
+
+.text-header {
+    color: var(--primary-color);
+}
+
+.blue-line {
+    background-color: var(--primary-color);
+    height: 1rem;
+}
+
+
+@media screen and (max-width: 767px) {
+
+    .container {
+        border-radius: 0 !important;
+    }
+}

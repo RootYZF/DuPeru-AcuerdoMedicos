@@ -1,0 +1,62 @@
+<nav>
+    <div class="logo">
+        <p-sidebar [(visible)]="sidebarVisible" [transitionOptions]="'0ms'" styleClass="p-sidebar-m" [style]="{width:'20rem'}">
+        <!-- TODO: Convertir a componete reutilizable -->
+        <!-- BODY -->
+            <ng-template pTemplate="content">
+                <div class="layout-menu">
+                    <h4 class="ml-5 text-500"></h4>
+                    <p-panelMenu [model]="panelMenu"></p-panelMenu>
+                </div>
+            </ng-template>
+
+             <ng-template pTemplate="footer">
+                <div class="h-auto flex align-content-end">
+                    <button    
+                        pButton
+                        pRipple 
+                        icon="pi pi-sign-out" 
+                        label="Cerrar sesión"
+                        (click)="logOut()"
+                        class="p-button-rounded p-button-text logOut align-items-center pb-3 h-3rem"
+                        >
+                    </button>
+                </div>
+            </ng-template>
+        </p-sidebar>
+        <i class="pi pi-cog sanguchito shadow-4" (click)="sidebarVisible = true"></i>
+    </div>
+</nav>
+
+<div class="navbar">
+    <div class="w-auto">
+        <!-- TODO: Convertir a componete reutilizable -->
+        <p-sidebar [(visible)]="sidebarVisible"  [transitionOptions]="'0ms'" styleClass="p-sidebar-m" [style]="{width:'20rem'}">
+
+            <!-- BODY -->
+            <ng-template pTemplate="content">
+                <div class="layout-menu">
+                    <h4 class="ml-5 text-500"></h4>
+                    <p-panelMenu [model]="panelMenu"></p-panelMenu>
+                </div>
+            </ng-template>
+
+            <!-- FOOTER -->
+            <ng-template pTemplate="footer">
+                <div class="h-auto flex align-content-end">
+                    <button    
+                        pButton
+                        pRipple 
+                        icon="pi pi-sign-out" 
+                        label="Cerrar sesión"
+                        (click)="logOut()"
+                        class="p-button-rounded p-button-text logOut align-items-center pb-3 h-3rem"
+                        >
+                    </button>
+                </div>
+            </ng-template>
+        </p-sidebar>
+        <i class="pi pi-bars text-3xl text-white" (click)="sidebarVisible = true"></i>
+    </div>
+</div>
+<router-outlet></router-outlet>

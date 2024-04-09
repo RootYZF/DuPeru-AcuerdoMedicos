@@ -1,0 +1,50 @@
+<div class="px-5">
+    <form [formGroup]="approvalDataForm">
+        <!-- Inputs Datos Facturacion -->
+        <div class="p-fluid grid mt-4">
+
+            <!-- ESTADO -->
+            <div class="col-12 md:col-10 flex flex flex-column md:flex-row lg:flex-row xl:flex-row">
+                <span class="col-3 text-xl">ESTADO</span>
+                <p-dropdown 
+                    [options]="statusList"
+                    class="col px-0"
+                    [autoDisplayFirst]="false" 
+                    formControlName="status"
+                    [showClear]="true"
+                    optionLabel="description" 
+                    (onChange)="click($event)"
+                ></p-dropdown>
+            </div>
+
+            <!-- DESCRIPCIÓN -->
+            <div class="col-12 md:col-10 flex flex-column md:flex-row lg:flex-row xl:flex-row">
+                <span class="col-3 text-xl">DESCRIPCIÓN</span>
+                <textarea 
+                    rows="5" 
+                    cols="30" 
+                    pInputTextarea                    
+                    formControlName="description"
+                    [maxlength]="800"
+                    #description
+                ></textarea>
+            </div>
+        </div>
+
+        <footer class="col-12 text-center py-3">
+            <button  
+                class="col-2 b-primary text-white text-xl w-3 cursor-pointer mr-2" 
+                type="button"
+                [disabled]="false"
+                #buttonSave>Guardar
+            </button>
+            <button  
+                class="col-2 b-primary text-white text-xl w-3 cursor-pointer ml-2" 
+                type="button"
+                [disabled]="false"
+                #buttonSave>Cancelar
+            </button>
+        </footer>
+
+    </form>
+</div>

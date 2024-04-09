@@ -1,0 +1,49 @@
+:host ::ng-deep {
+    .p-fieldset {
+        min-height: 25.5rem !important;
+      }
+
+    .add-button {
+        border: 1px solid var(--primary-color) !important;
+        border-radius: 2rem !important;
+    }
+
+    .p-button {
+        .pi {
+            font-size: larger !important;
+        }
+    }
+
+    .pi-trash {
+        font-size: 1.4rem;
+        color: var(--primary-color);
+    }
+
+    .pi-trash:hover {
+    cursor: pointer;
+    }
+
+    .p-checkbox .p-checkbox-box {
+    border-radius: 6px !important;
+    }
+}
+
+.container-products {
+    height: 14rem;
+    overflow: auto;
+}
+
+.container-products ul {
+    margin: 0;
+    overflow: hidden;
+  }
+
+.item-product {
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    box-shadow: 0px -1px 0px 0px rgba(17, 17, 17, 0.08) inset;
+  }

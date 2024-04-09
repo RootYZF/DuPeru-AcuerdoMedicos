@@ -1,0 +1,44 @@
+<div class="lg:col col-12 m-0 p-0 lg:pr-2">
+    <p-fieldset>
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center text-white">
+            <span class="font-bold text-lg uppercase">Productos sin registro closeup actual</span>
+            </div>
+        </ng-template>
+
+        <form [formGroup]="productUnregisteredForm">
+            <div class="p-fluid grid col-12 justify-content-center align-items-center">
+                <div class="field col-12 lg:w-full md:w-full w-22rem">
+                    <label class="mb-2 font-bold">Producto</label>
+                    <p-dropdown 
+                        [filter]="true" 
+                        filterBy="description"
+                        formControlName="product" 
+                        [options]="currentUnregisteredProductList" 
+                        [autoDisplayFirst]="false" 
+                        optionLabel="description" 
+                        placeholder="Selecciona un producto" 
+                        (onChange)="addProduct()">
+                    </p-dropdown>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="currentUnregisteredProductSelected.length > 0" class="container-products">
+            <ul>
+                <li class="item-product grid">
+                    <span class="col-1 font-semibold">50%</span>
+                    <span class="col-9 font-semibold">Descripcion de Producto</span>
+                    <span class="col-2 text-right font-semibold">Eliminar</span>
+                </li>
+            </ul>
+            <ul *ngFor="let product of currentUnregisteredProductSelected; index as i">
+              <li class="item-product grid">
+                  <p-checkbox class="lg:col md:col col-1" [binary]="true" inputId="binary"></p-checkbox>
+                  <span class="col-10 description"> {{ product.description }}</span>
+                  <i class="lg:col md:col col-1 pi pi-trash text-center" (click)="removeProduct(i)"></i>
+              </li>
+            </ul>
+          </div>
+    </p-fieldset>
+</div>

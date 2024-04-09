@@ -1,0 +1,25 @@
+<div class="col-12 text-center container">
+
+  <div *ngIf="customPropertie == 'create'">
+      <h2 class="custom-letter"> !LA GUÍA NRO {{title}}</h2>
+      <h3 class="custom-letter font-custom"> HA SIDO GUARDADA CON ÉXITO!</h3>
+  </div>
+
+  <div *ngIf="customPropertie == 'update'">
+      <h2 class="custom-letter"> !LA GUÍA NRO {{title}}</h2>
+      <h3 class="custom-letter font-custom"> HA SIDO ACTUALIZADA CON ÉXITO!</h3>
+  </div>
+
+  <div *ngIf="!customPropertie">
+      <h3>{{title}}</h3>
+  </div>
+
+  <p class="text-xl font-bold uppercase">{{description}}</p>
+  <button
+      class="col-6 b-primary text-white cursor-pointer text-lg mb-4 mt-2 h-3rem font-bold"
+      autofocus
+      (click)="closeModal()"
+      type="button"
+      #closeButton>OK
+  </button>
+</div>

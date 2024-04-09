@@ -1,0 +1,426 @@
+<div class="container p-fluid grid col p-0 m-0 mt-4 align-self-center justify-content-center">
+    <div class="lg:col-4 md:col-10 col-12 m-0 p-0 lg:pr-3 closeup">
+        <p-fieldset>
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center text-white">
+                    <span class="font-bold text-lg uppercase">Indicadores CloseUp</span>
+                </div>
+            </ng-template>
+                <form [formGroup]="indicatorsCloseUpForm">
+                    <div class="grid col justify-content-center align-items-center">
+                        <span class="col-6 uppercase font-medium">Valoracion</span>
+                        <p-inputNumber
+                            class="col-6 p-1 currency input-medium"
+                            [class]="validateService.validate(indicatorsCloseUpForm.controls['assessment'])"
+                            mode="currency"
+                            formControlName="assessment"
+                            currency="PEN"
+                            locale="es-PE"
+                            [readonly]="true"
+                        ></p-inputNumber>
+
+                        <span class="col-6 uppercase font-medium">Inversión 15%</span>
+                        <p-inputNumber
+                            class="col-6 p-1 currency input-medium"
+                            [class]="validateService.validate(indicatorsCloseUpForm.controls['assessment'])"
+                            formControlName="investment"
+                            mode="currency"
+                            currency="PEN"
+                            [readonly]="true"
+                            locale="es-PE"
+                        ></p-inputNumber>
+
+                        <span class="col-6 uppercase font-medium">Moneda</span>
+                        <p-dropdown
+                            [options]="typeCurrency"
+                            [class]="validateService.validate(indicatorsCloseUpForm.controls['type_currency'])"
+                            class="col-6 p-1 input-medium"
+                            [autoDisplayFirst]="false"
+                            optionLabel="description"
+                            formControlName="type_currency"
+                            placeholder="Selecciona moneda"
+                            (onChange)="selectCurrencyType()"
+                            [showClear]="false"
+                        ></p-dropdown>
+
+                        <span class="col-12 flex flex-row px-0">
+                            <span class="col-6 uppercase font-medium align-self-center">Cantidad de pagos</span>
+                            <p-dropdown
+                                [class]="validateService.validate(indicatorsCloseUpForm.controls['payment_number'])"
+                                class="col p-1 input-medium"
+                                [options]="payments"
+                                [autoDisplayFirst]="false"
+                                optionLabel="description"
+                                formControlName="payment_number"
+                                (onChange)="selectPaymentNumber()"
+                                [showClear]="false"
+                            ></p-dropdown>
+                            <button
+                                *ngIf="paymentsNumber"
+                                pButton
+                                type="button"
+                                pRipple
+                                icon="pi pi-eye"
+                                class="p-button-rounded p-button-text text-blue"
+                                [disabled]="!paymentsNumber? true : false"
+                                (click)="openModalNumberOfPayments()"
+                            ></button>
+                        </span>
+
+
+                        <span class="col-6 uppercase font-medium">Desembolso al inicio</span>
+                        <p-inputNumber
+                            class="col-6 p-1 currency input-medium"
+                            mode="currency"
+                            currency="{{isDollarSelected? 'USD' : 'PEN'}}"
+                            locale="{{isDollarSelected? 'en-US' : 'es-PE'}}"
+                            formControlName="initial_disbursement"
+                            (onInput)="calcTotal()"
+                            (onFocus)="selectValue(initial_disbursement)"
+                            #initial_disbursement
+                         ></p-inputNumber>
+
+                        <span class="col-6 uppercase font-medium">Total de objetivos</span>
+                        <p-inputNumber
+                            class="col-6 p-1 currency input-medium"
+                            mode="currency"
+                            currency="{{isDollarSelected? 'USD' : 'PEN'}}"
+                            [class]="validateService.validate(indicatorsCloseUpForm.controls['total_objetives'])"
+                            locale="{{isDollarSelected? 'en-US' : 'es-PE'}}"
+                            formControlName="total_objetives"
+                            [readonly]="true"
+                        ></p-inputNumber>
+
+                        <span class="col-6 uppercase font-medium pt-3">Total</span>
+                        <p-inputNumber
+                            class="col-6 p-1 pt-3 currency input-medium"
+                            mode="currency"
+                            currency="{{isDollarSelected? 'USD' : 'PEN'}}"
+                            [class]="validateService.validate(indicatorsCloseUpForm.controls['total'])"
+                            locale="{{isDollarSelected? 'en-US' : 'es-PE'}}"
+                            formControlName="total"
+                            [readonly]="true"
+                        ></p-inputNumber>
+                    </div>
+                </form>
+            </p-fieldset>
+        </div>
+
+        <div class="lg:col-8 md:col-10 col-12 m-0 p-0 lg:pl-3 lg:mt-0 mt-4">
+            <p-fieldset>
+                <ng-template pTemplate="header">
+                    <div class="flex align-items-center text-white">
+                    <span class="font-bold text-lg uppercase">Indicadores CloseUp Tam</span>
+                    </div>
+                </ng-template>
+            <form [formGroup]="indicatorsCloseUpTamForm">
+                <div class="grid col">
+                    <div class="lg:col col-12 justify-content-center p-0">
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium">Total compite</span>
+                            <p-inputNumber
+                                class="col-6 p-1 input-medium"
+                                formControlName="total_compete"
+                                [readonly]="true"
+                                [min]="0"
+                                mode="decimal"
+                                locale="en-IN"
+                                [useGrouping]="true">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium">Total px</span>
+                            <p-inputNumber
+                                class="col-6 p-1 input-medium"
+                                formControlName="total_px"
+                                [readonly]="true"
+                                [min]="0"
+                                mode="decimal"
+                                locale="en-IN"
+                                [useGrouping]="true">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium">Propio</span>
+                            <p-inputNumber
+                                class="col-6 p-1 input-medium"
+                                formControlName="own"
+                                [readonly]="true"
+                                [min]="0"
+                                mode="decimal"
+                                locale="en-IN"
+                                [useGrouping]="true">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium">%Ms Negociado</span>
+                            <p-inputNumber
+                                class="col-6 p-1 input-medium percentage text-white font-bold"
+                                [readonly]="true"
+                                formControlName="negotiated"
+                                [min]="0"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium">%Ms Actual DuPeru</span>
+                            <p-inputNumber
+                                [readonly]="false"
+                                formControlName="current_duperu"
+                                class="col-6 p-1 input-medium"
+                                [readonly]="true"
+                                [min]="0"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium">%MS POR ALCANZAR</span>
+                            <p-inputNumber
+                                formControlName="to_achieve"
+                                [readonly]="true"
+                                class="col-6 p-1 input-medium"
+                                [min]="0"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium">%MS POR ALCANZAR MENSUAL</span>
+                            <p-inputNumber
+                                [readonly]="true"
+                                class="col-6 p-1 input-medium"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                [min]="0"
+                                formControlName="to_reach_monthly"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+                        <div class="grid p-1 col">
+                          <span class="col-6 uppercase font-medium">VALOR TOTAL</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 worth input-medium"
+                              mode="currency"
+                              locale="es-PE"
+                              currency="PEN"
+                              formControlName="total_value"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1 col">
+                          <span class="col-6 uppercase font-medium">VALOR RECETA MEDICO</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 worth input-medium"
+                              mode="currency"
+                              locale="es-PE"
+                              currency="PEN"
+                              formControlName="medical_prescription_value"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1 col">
+                          <span class="col-6 uppercase font-medium">VALOR RECETA PROPIO</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 worth input-medium"
+                              formControlName="own_recipe_value"
+                              mode="currency"
+                              locale="es-PE"
+                              currency="PEN"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1 col">
+                          <span class="col-6 uppercase font-medium">SALDO POR PAGAR</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 worthYelow input-medium"
+                              formControlName="balance_payable"
+                              mode="currency"
+                              locale="es-PE"
+                              currency="PEN"
+
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1 col">
+                          <span class="col-6 uppercase font-medium">VALOR POR ALCANZAR</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 worth input-medium"
+                              locale="es-PE"
+                              mode="currency"
+                              currency="PEN"
+                              formControlName="to_value_reach"
+                              >
+                          </p-inputNumber>
+                        </div>
+                    </div>
+
+                    <div class="lg:col col-12 justify-content-center p-0">
+
+                        <div class="grid p-1 col">
+                            <span class="col-6 uppercase font-medium lg:text-center">% objetivo anterior</span>
+                            <p-inputNumber
+                                [readonly]="true"
+                                class="col-6 p-1 input-medium"
+                                formControlName="previous_goal"
+                                [min]="0"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1">
+                            <span class="col-6 uppercase font-medium lg:text-center">Objetivo 1</span>
+                            <p-inputNumber
+                                [readonly]="true"
+                                class="col-6 p-1 input-medium"
+                                formControlName="objective_one"
+                                [min]="0"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1">
+                            <span class="col-6 uppercase font-medium lg:text-center">Objetivo 2</span>
+                            <p-inputNumber
+                                formControlName="objective_two"
+                                [readonly]="true"
+                                class="col-6 p-1 input-medium"
+                                [min]="0"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1">
+                            <span class="col-6 uppercase font-medium lg:text-center">Objetivo 3</span>
+                            <p-inputNumber
+                                [readonly]="true"
+                                class="col-6 p-1 input-medium"
+                                formControlName="objective_three"
+                                [min]="0"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1">
+                            <span class="col-6 uppercase font-medium lg:text-center">Objetivo 4</span>
+                            <p-inputNumber
+                                [readonly]="true"
+                                class="col-6 p-1 input-medium percentage"
+                                [min]="0"
+                                formControlName="objective_four"
+                                [minFractionDigits]="2"
+                                [maxFractionDigits]="2"
+                                suffix="%">
+                            </p-inputNumber>
+                        </div>
+
+                        <div class="grid p-1">
+                          <span class="col-6 uppercase font-medium lg:text-center">S/ Objetivo anterior</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 input-medium"
+                              formControlName="previous_value_goal"
+                              [min]="0"
+                              [minFractionDigits]="2"
+                              [maxFractionDigits]="2"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1">
+                          <span class="col-6 uppercase font-medium lg:text-center">Objetivo Valor 1</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 input-medium"
+                              formControlName="objective_value_one"
+                              [min]="0"
+                              [minFractionDigits]="2"
+                              [maxFractionDigits]="2"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1">
+                          <span class="col-6 uppercase font-medium lg:text-center">Objetivo Valor 2</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 input-medium"
+                              formControlName="objective_value_two"
+                              [min]="0"
+                              [minFractionDigits]="2"
+                              [maxFractionDigits]="2"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1">
+                          <span class="col-6 uppercase font-medium lg:text-center">Objetivo Valor 3</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 input-medium"
+                              formControlName="objective_value_three"
+                              [min]="0"
+                              [minFractionDigits]="2"
+                              [maxFractionDigits]="2"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1">
+                          <span class="col-6 uppercase font-medium lg:text-center">Objetivo Valor 4 </span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 input-medium percentage"
+                              formControlName="objective_value_four"
+                              [min]="0"
+                              [minFractionDigits]="2"
+                              [maxFractionDigits]="2"
+                              >
+                          </p-inputNumber>
+                        </div>
+                        <div class="grid p-1 col">
+                          <span class="col-6 uppercase font-medium lg:text-center">VALOR POR ALCANZAR MENSUAL</span>
+                          <p-inputNumber
+                              [readonly]="true"
+                              class="col-6 p-1 worth input-medium"
+                              formControlName="to_value_reach_monthly"
+                              mode="currency"
+                              currency="PEN"
+                              locale="es-PE"
+                              >
+                          </p-inputNumber>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </p-fieldset>
+    </div>
+</div>
+
+<div class="grid p-fluid col mt-3">
+    <div class="field mb-0 px-1 col-12">
+        <label class="text-h3 mb-2 font-bold title-obs uppercase">Observaciones de acuerdo</label>
+        <textarea id="textarea-obs" rows="5" cols="30"  pInputTextarea placeholder="Escribe tus observaciones, el campo acepta hasta 500 caracteres"></textarea>
+    </div>
+</div>

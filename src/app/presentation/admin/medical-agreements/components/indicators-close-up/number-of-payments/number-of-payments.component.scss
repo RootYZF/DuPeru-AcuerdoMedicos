@@ -1,0 +1,14 @@
+:host ::ng-deep {
+    .p-dialog .p-dialog-content:last-of-type {
+        max-height: 32rem !important;
+        min-height: 25rem !important;
+    }
+
+    .label {
+        color: #666666;
+    }
+
+    .p-datatable {
+        box-shadow: none !important;
+    }
+}

@@ -1,0 +1,53 @@
+<div class="container shadow-4">
+    <div class="h-4rem flex mx-0 md:mx-0 lg:mx-2 xl:mx-8 mt-8 md:mt-4 lg:mt-4 xl:mt-4">
+        <h1 class="col-6 md:col-6 align-self-center pl-4 text-header">ACUERDOS MEDICOS</h1>
+        <span class="col-6 md:col-6 text-right align-self-center pr-4">
+            <img class="h-5rem" src="assets/img/duperu-logo.png" />
+        </span>
+    </div>
+
+    <div class="grid justify-content-center mx-0 md:mx-0 lg:mx-2 xl:mx-8 mt-4 flex">
+    </div>
+    <section class="grid justify-content-center mx-0 md:mx-0 lg:mx-2 xl:mx-8 mt-4">
+        <div class="grid justify-content-center col-12 m-auto">
+            <!-- Informacion del medico -->
+            <div class="col-12 md:col-12">
+                <app-medical-information></app-medical-information>
+            </div>
+
+            <div class="col-12">
+                <app-indicators-close-up></app-indicators-close-up>
+            </div>
+
+            <div class="lg:col-6 col-12">
+                <app-current-products></app-current-products>
+            </div>
+            <div class="lg:col-6 col-12">
+                <app-previous-products></app-previous-products>
+            </div>
+
+            <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+                <app-current-unregistered-products></app-current-unregistered-products>
+            </div>
+
+            <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+                <app-previous-unregistered-products></app-previous-unregistered-products>
+            </div>
+
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12">
+                <app-authorization-agreement></app-authorization-agreement>
+            </div>
+        </div>
+    </section>
+
+    <footer class="col-12 text-center py-3">
+        <button  
+            class="col-2 b-primary text-white text-xl w-3 cursor-pointer" 
+            type="button"
+            [disabled]="false"
+            (click)="save()"
+            #buttonSave>Guardar
+        </button>
+    </footer>
+</div>
+
