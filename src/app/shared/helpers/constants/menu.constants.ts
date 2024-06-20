@@ -3,7 +3,7 @@ export const MENU = [
     label: 'Comercial',
     items: [
       {
-        label: 'Programacion Visitador Medico',
+        label: 'Programacion Visitador Medico(SUSPENDIDO)',
         path: '/admin/medical-visitor-programming'
       },
       {
